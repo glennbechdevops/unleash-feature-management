@@ -8,8 +8,8 @@ Description: >
 # More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
 Globals:
   Function:
-    Timeout: 3
-    MemorySize: 128
+    Timeout: 15
+    MemorySize: 512
 
 Resources:
   HelloWorldFunction:
@@ -18,6 +18,9 @@ Resources:
       CodeUri: hello_world/
       Handler: app.lambda_handler
       Runtime: python3.9
+      Environment:
+        Variables:
+          UNLEASH_API_TOKEN: <insert token here>
       Architectures:
         - x86_64
       Events:

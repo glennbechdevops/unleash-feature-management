@@ -1,42 +1,35 @@
 import json
-
-# import requests
-
+from UnleashClient import UnleashClient
+import os
 
 def lambda_handler(event, context):
-    """Sample pure Lambda function
 
-    Parameters
-    ----------
-    event: dict, required
-        API Gateway Lambda Proxy Input Format
+    print ("start")
 
-        Event doc: https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-lambda-proxy-integrations.html#api-gateway-simple-proxy-for-lambda-input-format
+    unleash_token = os.environ["UNLEASH_API_TOKEN"]
 
-    context: object, required
-        Lambda Context runtime methods and attributes
+    client = UnleashClient(
+        url="https://eu.app.unleash-hosted.com/eubb1043/api/",
+        app_name="default",
+        custom_headers={'Authorization': unleash_token})
+    client.initialize_client()
 
-        Context doc: https://docs.aws.amazon.com/lambda/latest/dg/python-context-object.html
+    not_implemented_response = {
+        "statusCode": 501,
+        "body": json.dumps({
+            "message": "Not yet implemented",
+        }),
+    }
 
-    Returns
-    ------
-    API Gateway Lambda Proxy Output Format: dict
-
-        Return doc: https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-lambda-proxy-integrations.html
-    """
-
-    # try:
-    #     ip = requests.get("http://checkip.amazonaws.com/")
-    # except requests.RequestException as e:
-    #     # Send some context about this error to Lambda Logs
-    #     print(e)
-
-    #     raise e
-
-    return {
+    ok_response =  {
         "statusCode": 200,
         "body": json.dumps({
             "message": "hello world",
             # "location": ip.text.replace("\n", "")
         }),
     }
+
+    if client.is_enabled('glenn_toggle'):
+        return ok_response
+    else:
+        return not_implemented_response
