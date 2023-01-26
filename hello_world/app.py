@@ -4,14 +4,14 @@ import os
 
 def lambda_handler(event, context):
 
-    print ("start")
-
     unleash_token = os.environ["UNLEASH_API_TOKEN"]
 
     client = UnleashClient(
         url="https://eu.app.unleash-hosted.com/eubb1043/api/",
+        cache_directory="/tmp",
         app_name="default",
         custom_headers={'Authorization': unleash_token})
+
     client.initialize_client()
 
     not_implemented_response = {
@@ -25,7 +25,6 @@ def lambda_handler(event, context):
         "statusCode": 200,
         "body": json.dumps({
             "message": "hello world",
-            # "location": ip.text.replace("\n", "")
         }),
     }
 
