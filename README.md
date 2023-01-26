@@ -126,13 +126,14 @@ SAM configuration file [samconfig.toml]:
 SAM configuration environment [default]:
 ```
 
-This will take some time, and when it is done - the Endpoint given to your lambda will be displayed - something like this 
+This will take some time, and when it is done - the Endpoint given to your lambda will be displayed - something like this (Just an example)
 ```shell
 Key                 HelloWorldApi                                                                                                                                                                                                         
 Description         API Gateway endpoint URL for Prod stage for Hello World function                                                                                                                                                      
 Value               https://6ztkdjfii8.execute-api.eu-west-1.amazonaws.com/Prod/hello/    
 ```
 
+The lambda function is deployed with the domain name / URL given by *value* in your output.
 You can now test your endpoint in your browser, and change the toggle on- and off at unleash.io and see that the browser either returns 
 501 Not implemented- or 200 OK. 
 
