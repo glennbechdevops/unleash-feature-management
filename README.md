@@ -16,6 +16,8 @@ Observe the effects of setting the toggle on or off by viewing the results in ou
 
 ## Create a toggle in unleash io
 
+![Alt text](img/newtoggle.png "a title")
+
 * Log in to your Unleash dashboard at https://www.getunleash.io/
 * Click on the "Feature Toggles" button on the top navigation menu.
 * Click on the "New Feature Toggle" button.
@@ -23,6 +25,8 @@ Observe the effects of setting the toggle on or off by viewing the results in ou
 * Choose the "Release" toggle type.
 * Leave the remaining values as their default.
 * Click on the "Create Feature Toggle" button.
+
+![Alt text](img/toggledetails.png "a title")
 
 ## Log in to your AWS Cloud9  environment 
 
