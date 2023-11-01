@@ -18,7 +18,7 @@ Observe the effects of setting the toggle on or off by viewing the results in ou
 
 ![Alt text](img/newtoggle.png "a title")
 
-* Log in to your Unleash dashboard at https://www.getunleash.io/
+* Log in to your Unleash dashboard. Link will be given in the classroom.
 * Click on the "Feature Toggles" button on the top navigation menu.
 * Click on the "New Feature Toggle" button.
 * Enter a name for the feature toggle, including your name to avoid naming conflicts (e.g. glenn_toggle)
