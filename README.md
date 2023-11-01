@@ -39,7 +39,8 @@ Go to the AWS Management Console (https://244530008913.signin.aws.amazon.com/con
 * In the services menu, look for the "Cloud9" service.
 * Click on the Cloud9 service to open the Cloud9 dashboard.
 * You will now be able to see the list of environments that you have access to.
-* Select your environment 
+* !If you don't see any environments, make sure the selected region is eu-west-1
+* Select your Cloud9 environment, select the "Open" Link 
 * Familiarize yourself with Cloud9 by exploring and experimenting with the platform.
 
 ## No auto save! 
