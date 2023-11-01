@@ -4,15 +4,30 @@ Welcome to this lab exercise where we will explore feature management using Unle
 
 ## Overview
 
-In this lab, we will:
+In this lab, we will have a play with AWS Comprehend and feature toggles
+
+Amazon Comprehend is an AWS service that offers powerful natural language processing (NLP) capabilities. It enables
+businesses to analyze and extract valuable insights from unstructured text data, such as customer reviews, social media
+content, and documents. With features like sentiment analysis, named entity recognition, and language detection, AWS
+Comprehend helps businesses understand and harness the information contained within textual content.
+
+Sentiment analysis, a key feature of AWS Comprehend, allows businesses to automatically determine the emotional tone and
+polarity of text, classifying it as positive, negative, neutral, or mixed. By gauging the sentiment expressed in
+customer feedback, reviews, or social media posts, organizations can swiftly grasp public sentiment about their products
+or services, facilitating data-driven decision-making and proactive engagement with their audience. This feature is a
+valuable tool for monitoring and understanding customer opinions, improving brand reputation, and enhancing user
+experiences.
+
+We will
 
 * Use the Unleash UI to create a feature toggle
 * Utilize AWS Cloud 9, a web-based development environment, to build and run an AWS Lambda function
 * Observe how we can switch the toggle on or off and observe the resulting responses
-* Deploy the Lambda function and test the API endpoint in a browser
+* If the feature toggle is enabled, it will pass the request body to AWS Comprehend
+* If the feature toggle is disabled, it will return a mock result of positive, with no confidence score
+* We will deploy the Lambda function and test the API endpoint
 
 Observe the effects of setting the toggle on or off by viewing the results in our browser.
-
 
 ## Create a toggle in unleash io
 
@@ -28,9 +43,9 @@ Observe the effects of setting the toggle on or off by viewing the results in ou
 
 ![Alt text](img/toggledetails.png "a title")
 
-## Log in to your AWS Cloud9  environment 
+## Log in to your AWS Cloud9  environment
 
-Go to the AWS Management Console (https://244530008913.signin.aws.amazon.com/console) 
+Go to the AWS Management Console (https://244530008913.signin.aws.amazon.com/console)
 
 * Enter your username - password and usernae will be given in class
 * Click on the "Sign In" button.
@@ -40,29 +55,31 @@ Go to the AWS Management Console (https://244530008913.signin.aws.amazon.com/con
 * Click on the Cloud9 service to open the Cloud9 dashboard.
 * You will now be able to see the list of environments that you have access to.
 * !If you don't see any environments, make sure the selected region is eu-west-1
-* Select your Cloud9 environment, select the "Open" Link 
+* Select your Cloud9 environment, select the "Open" Link
 * Familiarize yourself with Cloud9 by exploring and experimenting with the platform.
 
-## No auto save! 
+## No auto save!
 
-The number #1 problem for most students using Cloud9 is that they forget to explicitly save files  - as there is no auto save!
+The number #1 problem for most students using Cloud9 is that they forget to explicitly save files - as there is no auto
+save!
 
 ## Clone this repo
 
-Clone this repository into your cloud 9 environment. Use the Terminal on the bottom of the screen in your cloud 9 environment 
+Clone this repository into your cloud 9 environment. Use the Terminal on the bottom of the screen in your cloud 9
+environment
 
 ```text
 git clone https://github.com/glennbechdevops/unleash-feature-management
 ```
 
-## Add an Unleash token to your template.yml file 
+## Add an Unleash token to your template.yml file
 
-On the left side in the Cloud9 IDE, there is a file browser. Now that this repository is cloned, you'll see a folder with the name 
-unleash-feature-management
+On the left side in the Cloud9 IDE, there is a file browser. Now that this repository is cloned, you'll see a folder
+with the name  ```unleash-feature-management```
 
-Add an unleash token to the code 
+Add an unleash token to the code
 
-The token will be given in class
+The token will be given in class, and should be added to this segment of template.yml file
 
 ````text
     Properties:
@@ -75,21 +92,23 @@ The token will be given in class
       Architectures:
 ````
 
-Also, in the folder hello_world, there is a file ```app.py``` - You need to change the following line to use your own feature toggle  
+Also, in the folder hello_world, there is a file ```app.py``` - You need to change the following line to use your own
+feature toggle
 
 ```shell
     if client.is_enabled('glenn_toggle'):
 ```
 
-## Build and run the Lambda function locally 
+## Build and run the Lambda function locally
 
 ```shell
 cd unleash-feature-management/
 sam build --use-container
-sam local invoke
+sam local invoke -e event.json
 ```
 
-The output is not very human readable, but you can see a status code and a text in there ... this will be better after we deploy it and access via browser. 
+The output is not very human readable, but you can see a status code and a text in there ... this will be better after
+we deploy it and access via browser.
 Typical output for a 200 OK.
 
 ```text
@@ -107,13 +126,14 @@ REPORT RequestId: 15b7c626-1327-47ee-b86c-40d0e9ffdaa4  Init Duration: 0.27 ms  
 Try to toggle your feature on and off. When the toggle is off, the lambda should return a HTTP 501 / Not implemented
 When enabled, it should return 200 ok
 
-
 ## Deploy the lambda to AWS
+
 ```shell
 sam deploy --guided
 ```
 
-Please note that you do not need to provide the "guided" flag after the first deployment has been done. During the deployment process, provide the following input, but use your own name in the stack name.
+Please note that you do not need to provide the "guided" flag after the first deployment has been done. During the
+deployment process, provide the following input, but use your own name in the stack name.
 
 ```
 Setting default arguments for 'sam deploy'
@@ -132,7 +152,9 @@ SAM configuration file [samconfig.toml]:
 SAM configuration environment [default]:
 ```
 
-This will take some time, and when it is done - the Endpoint given to your lambda will be displayed - something like this (Just an example)
+This will take some time, and when it is done - the Endpoint given to your lambda will be displayed - something like
+this (Just an example)
+
 ```shell
 Key                 HelloWorldApi                                                                                                                                                                                                         
 Description         API Gateway endpoint URL for Prod stage for Hello World function                                                                                                                                                      
@@ -140,9 +162,10 @@ Value               https://6ztkdjfii8.execute-api.eu-west-1.amazonaws.com/Prod/
 ```
 
 The lambda function is deployed with the domain name / URL given by *value* in your output.
-You can now test your endpoint in your browser, and change the toggle on- and off at unleash.io and see that the browser either returns 
-501 Not implemented- or 200 OK. 
+You can now test your endpoint in your browser, and change the toggle on- and off at unleash.io and see that the browser
+either returns
+501 Not implemented- or 200 OK.
 
-# Bonus challenge; 
+# Bonus challenge;
 
 Explore the Unleash IO and see if you can create a gradual roll out strategy for your toggle! 
