@@ -57,6 +57,11 @@ git clone https://github.com/glennbechdevops/unleash-feature-management
 
 ## Add an Unleash token to your template.yml file 
 
+On the left side in the Cloud9 IDE, there is a file browser. Now that this repository is cloned, you'll see a folder with the name 
+unleash-feature-management
+
+Add an unleash token to the code 
+
 The token will be given in class
 
 ````text
@@ -70,7 +75,7 @@ The token will be given in class
       Architectures:
 ````
 
-Also, in ```app.py``` you need to change the following line to use your feature toggle  
+Also, in the folder hello_world, there is a file ```app.py``` - You need to change the following line to use your own feature toggle  
 
 ```shell
     if client.is_enabled('glenn_toggle'):
