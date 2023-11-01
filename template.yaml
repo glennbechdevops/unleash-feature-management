@@ -30,7 +30,7 @@ Resources:
             Path: /sentiment
             Method: post
       Policies:
-          - AmazonComprehendFullAccess
+          - arn:aws:iam::aws:policy/ComprehendFullAccess
 
 Outputs:
   # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
