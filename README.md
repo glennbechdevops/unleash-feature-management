@@ -33,6 +33,11 @@ Observe the effects of setting the toggle on or off by viewing the results in ou
 
 ![Alt text](img/newtoggle.png "a title")
 
+Register for the Unleash environment with an email address you can confirm
+https://eu.app.unleash-hosted.com/eubb1043/new-user?invite=2693d43e14a2324f42584023ef79f60d
+
+Then ... 
+
 * Log in to your Unleash dashboard. Link will be given in the classroom.
 * Click on the "Feature Toggles" button on the top navigation menu.
 * Click on the "New Feature Toggle" button.
@@ -107,23 +112,17 @@ sam build --use-container
 sam local invoke -e event.json
 ```
 
-The output is not very human readable, but you can see a status code and a text in there ... this will be better after
-we deploy it and access via browser.
-Typical output for a 200 OK.
+The event.json file looks very comprehensive! But it's actually just how an HTTP request is passed from the API Client to the Lambda function 
+through the AWS Service called API Gateway. Find the "body" element in the file to try out different text
 
+The response might look like something like this;
 ```text
-Invoking app.lambda_handler (python3.9)
-Skip pulling image and use local one: public.ecr.aws/sam/emulation-python3.9:rapid-1.57.0-x86_64.
-
-Mounting /home/ec2-user/environment/unleash-feature-management/.aws-sam/build/HelloWorldFunction as /var/task:ro,delegated inside runtime container
-start
-[WARNING]       2023-01-25T23:45:17.604Z        15b7c626-1327-47ee-b86c-40d0e9ffdaa4    scheduler_executor should only be used with a custom scheduler.
-END RequestId: 15b7c626-1327-47ee-b86c-40d0e9ffdaa4
-REPORT RequestId: 15b7c626-1327-47ee-b86c-40d0e9ffdaa4  Init Duration: 0.27 ms  Duration: 713.09 ms     Billed Duration: 714 ms Memory Size: 512 MB     Max Memory Used: 512 MB
-{"statusCode": 200, "body": "{\"message\": \"hello world\"}"}test.user:~/environment/unleash-feature-management (main) $ sam local invoke```
+END RequestId: 5e84abaf-fc32-4d50-86f8-4219764c8d5e
+REPORT RequestId: 5e84abaf-fc32-4d50-86f8-4219764c8d5e  Init Duration: 0.14 ms  Duration: 1151.45 ms    Billed Duration: 1152 ms        Memory Size: 512 MB     Max Memory Used: 512 MB
+{"statusCode": 200, "headers": {"Content-Type": "application/json"}, "body": "{\"sentiment\": \"positive\", \"confidence\": 0.9991305470466614}"}
 ```
 
-Try to toggle your feature on and off. When the toggle is off, the lambda should return a HTTP 501 / Not implemented
+Try to toggle your feature on and off,  When the toggle is off, the lambda should return positive sentiment, but with no confidence
 When enabled, it should return 200 ok
 
 ## Deploy the lambda to AWS
@@ -133,12 +132,12 @@ sam deploy --guided
 ```
 
 Please note that you do not need to provide the "guided" flag after the first deployment has been done. During the
-deployment process, provide the following input, but use your own name in the stack name.
+deployment process, provide the following input, but use your *own name* in the stack name.
 
 ```
 Setting default arguments for 'sam deploy'
 =========================================
-Stack Name [sam-app]: glenn-app
+Stack Name [sam-app]: your name or something 
 AWS Region [eu-west-1]:
 #Shows you resources changes to be deployed and require a 'Y' to initiate deploy
 Confirm changes before deploy [y/N]: N
@@ -162,10 +161,15 @@ Value               https://6ztkdjfii8.execute-api.eu-west-1.amazonaws.com/Prod/
 ```
 
 The lambda function is deployed with the domain name / URL given by *value* in your output.
-You can now test your endpoint in your browser, and change the toggle on- and off at unleash.io and see that the browser
-either returns
-501 Not implemented- or 200 OK.
+
+If you have Postman installed, or another API client - the URL should be similar to this 
+
+```https://26gfk7hsl6.execute-api.eu-west-1.amazonaws.com/Prod/sentiment```
+The method is POST, and the BODY should be a RAW text
+
 
 # Bonus challenge;
 
-Explore the Unleash IO and see if you can create a gradual roll out strategy for your toggle! 
+* Look at the documentation for the comprehend client and https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/comprehend.html
+* Can you add more functionality, and perhaps hide it using toggles? How about detect_dominant_language? 
+* Explore the Unleash IO and see if you can create a gradual roll-out strategy for your toggle! 
