@@ -34,7 +34,7 @@ Observe the effects of setting the toggle on or off by viewing the results in ou
 ![Alt text](img/newtoggle.png "a title")
 
 Register for the Unleash environment with an email address you can confirm
-https://eu.app.unleash-hosted.com/eubb1043/new-user?invite=2693d43e14a2324f42584023ef79f60d
+[https://eu.app.unleash-hosted.com/eubb1043/new-user?invite=2693d43e14a2324f42584023ef79f60d](https://eu.app.unleash-hosted.com/eubb1043/new-user?invite=2693d43e14a2324f42584023ef79f60d)
 
 Then ... 
 
