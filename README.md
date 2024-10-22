@@ -47,7 +47,7 @@ Then ...
 * Click on the "Create Feature Toggle" button.
 * On the main feature flag page, under the section "Enabled in environments", enable the flag for the "Development" environment
 
-![Alt text](img/toggledetails.png "a title")
+<img width="1283" alt="image" src="https://github.com/user-attachments/assets/66d5ee6d-b8c7-4cbc-be82-16cf322f4085">
 
 ## Log in to your AWS Cloud9  environment
 
