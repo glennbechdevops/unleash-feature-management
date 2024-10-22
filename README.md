@@ -18,7 +18,7 @@ or services, facilitating data-driven decision-making and proactive engagement w
 valuable tool for monitoring and understanding customer opinions, improving brand reputation, and enhancing user
 experiences.
 
-We will
+In this lab you will
 
 * Use the Unleash UI to create a feature toggle
 * Utilize AWS Cloud 9, a web-based development environment, to build and run an AWS Lambda function
@@ -39,12 +39,13 @@ Register for the Unleash environment with an email address you can confirm
 Then ... 
 
 * Log in to your Unleash dashboard. Link will be given in the classroom.
-* Click on the "Feature Toggles" button on the top navigation menu.
-* Click on the "New Feature Toggle" button.
+* Click on the "Default" Project
+* Click on the "New Feature Flag" button.
 * Enter a name for the feature toggle, including your name to avoid naming conflicts (e.g. glenn_toggle)
 * Choose the "Release" toggle type.
 * Leave the remaining values as their default.
 * Click on the "Create Feature Toggle" button.
+* On the main feature flag page, under the section "Enabled in environments", enable the flag for the "Development" environment
 
 ![Alt text](img/toggledetails.png "a title")
 
