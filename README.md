@@ -199,16 +199,13 @@ URL=<url from output of SAM deploy>
 curl -X POST $URL  -H "Content-Type: application/json" -d 'Sharknado is an absolute disaster, and not in the fun, campy way you might expect. The plot is absurd, and not in a clever or entertaining way, The CGI is laughably bad, with the sharks looking more like floating clip art than any real threat.' | jq
 ```
 
-# Set a Randomized 50% rollout strategy for the toggle 
+## Set a Randomized 50% rollout strategy for the toggle 
 
 * Go to the Unleash UI and find your toggle.
 * Find the development environment and click the "strategy" button
 * Change to Randomized stickyness - and 50% 
 * 
 <img width="790" alt="image" src="https://github.com/user-attachments/assets/f1c02b2d-1664-4091-bde3-715afb565bf9">
-
-
-
 
 
 
