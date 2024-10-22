@@ -81,6 +81,14 @@ Go to the AWS Management Console (https://244530008913.signin.aws.amazon.com/con
 * Select your Cloud9 environment, select the "Open" Link
 * Familiarize yourself with Cloud9 by exploring and experimenting with the platform.
 
+## Install jq 
+
+jq is a small command line tool that makes parsing and displaying json better in a terminal. Run the command from the Cloud9 Terminal 
+
+```
+sudo yum install -y jq 
+```
+
 ## No auto save!
 
 The number #1 problem for most students using Cloud9 is that they forget to explicitly save files - as there is no auto
@@ -188,7 +196,7 @@ You can test the API with `curl` from the Terminal window in Cloud9
 
 ```
 URL=<url from output of SAM deploy>
-curl -X POST $URL  -H "Content-Type: application/json" -d 'Sharknado is an absolute disaster, and not in the fun, campy way you might expect. The plot is absurd, and not in a clever or entertaining way, The CGI is laughably bad, with the sharks looking more like floating clip art than any real threat.'
+curl -X POST $URL  -H "Content-Type: application/json" -d 'Sharknado is an absolute disaster, and not in the fun, campy way you might expect. The plot is absurd, and not in a clever or entertaining way, The CGI is laughably bad, with the sharks looking more like floating clip art than any real threat.' | jq
 ```
 
 # Set a Randomized 50% rollout strategy for the toggle 
