@@ -180,10 +180,16 @@ Value               https://6ztkdjfii8.execute-api.eu-west-1.amazonaws.com/Prod/
 
 The lambda function is deployed with the domain name / URL given by *value* in your output.
 
-If you have Postman installed, or another API client - the URL should be similar to this 
-
-```https://26gfk7hsl6.execute-api.eu-west-1.amazonaws.com/Prod/sentiment```
+If you have Postman installed, or another API client - the URL should be similar to this `https://26gfk7hsl6.execute-api.eu-west-1.amazonaws.com/Prod/sentiment` 
+Warning! please note that there should be `/Prod/sentiment`, sometimes SAM outputs `/Prod/Hello`in the output
 The method is POST, and the BODY should be a RAW text
+
+You can test the API with `curl` from the Terminal window in Cloud9 
+
+```
+URL=<url from output of SAM deploy>
+curl -X POST $URL  -H "Content-Type: application/json" -d 'Sharknado is an absolute disaster, and not in the fun, campy way you might expect. The plot is absurd, and not in a clever or entertaining way, The CGI is laughably bad, with the sharks looking more like floating clip art than any real threat.'
+```
 
 # Set a Randomized 50% rollout strategy for the toggle 
 
