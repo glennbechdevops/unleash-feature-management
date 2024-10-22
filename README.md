@@ -4,7 +4,10 @@ Welcome to this lab exercise where we will explore feature management using Unle
 
 ## Overview
 
-In this lab, we will have a play with AWS Comprehend and feature toggles
+In this lab, we will have a play with AWS Comprehend and feature toggles. Please spend some time to read about the different 
+services and tools used in this lab 
+
+### AWS Comprehend 
 
 Amazon Comprehend is an AWS service that offers powerful natural language processing (NLP) capabilities. It enables
 businesses to analyze and extract valuable insights from unstructured text data, such as customer reviews, social media
@@ -17,6 +20,20 @@ customer feedback, reviews, or social media posts, organizations can swiftly gra
 or services, facilitating data-driven decision-making and proactive engagement with their audience. This feature is a
 valuable tool for monitoring and understanding customer opinions, improving brand reputation, and enhancing user
 experiences.
+
+### AWS Lambda
+
+AWS Lambda is a serverless computing service that allows developers to run code without provisioning or managing servers. It automatically scales applications by running code in response to triggers such as changes in data, HTTP requests, or even specific system events. Lambda functions are event-driven and can be written in various programming languages, including Python, Node.js, Java, and more. With AWS Lambda, users are only charged for the compute time they consume, making it a cost-effective option for executing small, on-demand functions without maintaining dedicated server infrastructure. It's commonly used for microservices architectures, data processing, and automating cloud operations.
+
+### AWS SAM 
+
+AWS Serverless Application Model (AWS SAM) is an open-source framework designed to simplify the development, deployment, and management of serverless applications on AWS. It extends AWS CloudFormation to provide a simplified syntax for defining serverless resources, such as AWS Lambda functions, API Gateway endpoints, DynamoDB tables, and more. With SAM, developers can easily define and deploy complex serverless applications in a declarative template, manage configurations, and package their code for deployment. SAM also includes the AWS SAM CLI, which allows for local testing and debugging of serverless applications, making it a powerful tool for both development and operational efficiency. By streamlining the creation of serverless resources, AWS SAM enables rapid iteration and seamless integration with other AWS services.
+
+### Unleash.io
+
+Unleash is an open-source feature management platform that enables developers to control the release of features in their applications using feature toggles. It allows for the gradual rollout of new features, enabling teams to enable or disable them without deploying new code. This helps reduce risks during deployment, improve testing, and provide a more flexible development process. Unleash supports various toggle strategies, such as user-specific, gradual rollouts, or environment-based toggles, allowing for fine-grained control over which users or environments see new features. This makes it ideal for continuous delivery and A/B testing scenarios.
+
+## Lab intro
 
 In this lab you will
 
@@ -167,6 +184,18 @@ If you have Postman installed, or another API client - the URL should be similar
 
 ```https://26gfk7hsl6.execute-api.eu-west-1.amazonaws.com/Prod/sentiment```
 The method is POST, and the BODY should be a RAW text
+
+# Set a Randomized 50% rollout strategy for the toggle 
+
+* Go to the Unleash UI and find your toggle.
+* Find the development environment and click the "strategy" button
+* Change to Randomized stickyness - and 50% 
+* 
+<img width="790" alt="image" src="https://github.com/user-attachments/assets/f1c02b2d-1664-4091-bde3-715afb565bf9">
+
+
+
+
 
 
 # Bonus challenge;
