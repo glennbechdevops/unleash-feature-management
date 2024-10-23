@@ -211,6 +211,7 @@ curl -X POST $URL  -H "Content-Type: application/json" -d 'Sharknado is an absol
 
 # Bonus challenge;
 
+* Try different settings for the toggle (percentage, sticky randomness etc) 
 * Look at the documentation for the comprehend client and https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/comprehend.html
-* Can you add more functionality, and perhaps hide it using toggles? How about detect_dominant_language? 
+* Can you add more functionality, How about detect_dominant_language? Keyword extraction or entity detection.  
 * Explore the Unleash IO and see if you can create a gradual roll-out strategy for your toggle! 
