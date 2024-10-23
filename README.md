@@ -70,7 +70,7 @@ Then ...
 
 Go to the AWS Management Console (https://244530008913.signin.aws.amazon.com/console)
 
-* Enter your username - password and usernae will be given in class
+* Enter your username - password and username will be given in class
 * Click on the "Sign In" button.
 * Once you are logged in, you will be directed to the AWS Management Console home page.
 * In the top left corner, you will see a navigation menu. Click on the "Services" button.
