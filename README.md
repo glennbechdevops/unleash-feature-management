@@ -205,7 +205,8 @@ curl -X POST $URL  -H "Content-Type: application/json" -d 'Sharknado is an absol
 * Go to the Unleash UI and find your toggle.
 * Find the development environment and click the "strategy" button
 * Change to Randomized stickyness - and 50% 
-* 
+* Observe that the toggle will evaluate to true- in about 50% of the lambda invocations
+  
 <img width="790" alt="image" src="https://github.com/user-attachments/assets/f1c02b2d-1664-4091-bde3-715afb565bf9">
 
 
