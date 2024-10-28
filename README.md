@@ -48,16 +48,13 @@ Observe the effects of setting the toggle on or off by viewing the results in ou
 
 ## Create a toggle in unleash io
 
-![Alt text](img/newtoggle.png "a title")
+Log into Unleash with credentials given in the class. This will either be a shared user, or your student email address depending on the lab setup. 
 
-Register for the Unleash environment with an email address you can confirm
-[https://eu.app.unleash-hosted.com/eubb1043/new-user?invite=2693d43e14a2324f42584023ef79f60d](https://eu.app.unleash-hosted.com/eubb1043/new-user?invite=2693d43e14a2324f42584023ef79f60d)
-
-Then ... 
-
-* Log in to your Unleash dashboard. Link will be given in the classroom.
 * Click on the "Default" Project
 * Click on the "New Feature Flag" button.
+
+![Alt text](img/newtoggle.png "a title")
+
 * Enter a name for the feature toggle, including your name to avoid naming conflicts (e.g. glenn_toggle)
 * Choose the "Release" toggle type.
 * Leave the remaining values as their default.
@@ -70,10 +67,7 @@ Then ...
 
 Go to the AWS Management Console (https://244530008913.signin.aws.amazon.com/console)
 
-* Enter your username - password and username will be given in class
-* Click on the "Sign In" button.
 * Once you are logged in, you will be directed to the AWS Management Console home page.
-* In the top left corner, you will see a navigation menu. Click on the "Services" button.
 * In the services menu, look for the "Cloud9" service.
 * Click on the Cloud9 service to open the Cloud9 dashboard.
 * You will now be able to see the list of environments that you have access to.
@@ -131,6 +125,11 @@ feature toggle
 ```
 
 ## Build and run the Lambda function locally
+
+Important! Before going forward, make sure you understand the logic of the Lambda function. It uses the toggle to decide wether to 
+
+* Return a mock response for the sentiment analysis
+* Call the AWS comprehend service to do a proper sentiment analysis
 
 ```shell
 cd unleash-feature-management/
