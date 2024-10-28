@@ -40,6 +40,7 @@ In this lab you will
 * Use the Unleash UI to create a feature toggle
 * Utilize AWS Cloud 9, a web-based development environment, to build and run an AWS Lambda function
 * Observe how we can switch the toggle on or off and observe the resulting responses
+* We will test an gradual rollout strategy and observe that the toggle state is randomized with a percentage of a probability of being on/off
 * If the feature toggle is enabled, it will pass the request body to AWS Comprehend
 * If the feature toggle is disabled, it will return a mock result of positive, with no confidence score
 * We will deploy the Lambda function and test the API endpoint
