@@ -1,0 +1,19 @@
+{
+  "name": "Unleash Feature Management Lab",
+  "image": "mcr.microsoft.com/devcontainers/python:3.9",
+  "features": {
+    "ghcr.io/devcontainers/features/aws-cli:1": {},
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+  },
+  "postCreateCommand": "pip install --user aws-sam-cli && sudo apt-get update && sudo apt-get install -y jq",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "amazonwebservices.aws-toolkit-vscode"
+      ]
+    }
+  },
+  "remoteUser": "vscode"
+}

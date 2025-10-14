@@ -38,7 +38,7 @@ Unleash is an open-source feature management platform that enables developers to
 In this lab you will
 
 * Use the Unleash UI to create a feature toggle
-* Utilize AWS Cloud 9, a web-based development environment, to build and run an AWS Lambda function
+* Utilize GitHub Codespaces, a cloud-based development environment, to build and run an AWS Lambda function
 * Observe how we can switch the toggle on or off and observe the resulting responses
 * We will test an gradual rollout strategy and observe that the toggle state is randomized with a percentage of a probability of being on/off
 * If the feature toggle is enabled, it will pass the request body to AWS Comprehend
@@ -64,44 +64,27 @@ Log into Unleash with credentials given in the class. This will either be a shar
 
 <img width="1283" alt="image" src="https://github.com/user-attachments/assets/66d5ee6d-b8c7-4cbc-be82-16cf322f4085">
 
-## Log in to your AWS Cloud9  environment
+## Set up your GitHub Codespace
 
-Go to the AWS Management Console (https://244530008913.signin.aws.amazon.com/console)
+* Fork this repository to your own GitHub account by clicking the "Fork" button in the top right corner of the GitHub page
+* Once forked, navigate to your forked repository
+* Click the green "Code" button and select the "Codespaces" tab
+* Click "Create codespace on main" to launch your development environment
+* Wait for the Codespace to initialize - this may take a minute or two
+* Once ready, you'll have a fully configured VS Code environment in your browser
+* Familiarize yourself with Codespaces by exploring the interface - it works just like VS Code!
 
-* Once you are logged in, you will be directed to the AWS Management Console home page.
-* In the services menu, look for the "Cloud9" service.
-* Click on the Cloud9 service to open the Cloud9 dashboard.
-* You will now be able to see the list of environments that you have access to.
-* !If you don't see any environments, make sure the selected region is eu-west-1
-* Select your Cloud9 environment, select the "Open" Link
-* Familiarize yourself with Cloud9 by exploring and experimenting with the platform.
+## Saving Files
 
-## Install jq 
+GitHub Codespaces (VS Code) supports auto-save! You can enable it by going to File > Auto Save in the menu. When enabled, your changes will be automatically saved. However, it's still good practice to manually save files with `Ctrl+S` (Windows/Linux) or `Cmd+S` (Mac) to ensure your changes are persisted.
 
-jq is a small command line tool that makes parsing and displaying json better in a terminal. Run the command from the Cloud9 Terminal 
+## Repository Setup
 
-```
-sudo yum install -y jq 
-```
-
-## No auto save!
-
-The number #1 problem for most students using Cloud9 is that they forget to explicitly save files - as there is no auto
-save!
-
-## Clone this repo
-
-Clone this repository into your cloud 9 environment. Use the Terminal on the bottom of the screen in your cloud 9
-environment
-
-```text
-git clone https://github.com/glennbechdevops/unleash-feature-management
-```
+Since you've already forked this repository and created a Codespace from it, the repository code is already available in your workspace! You don't need to clone anything. The terminal is available at the bottom of the screen in your Codespace (if you don't see it, go to Terminal > New Terminal from the menu).
 
 ## Add an Unleash token to your template.yml file
 
-On the left side in the Cloud9 IDE, there is a file browser. Now that this repository is cloned, you'll see a folder
-with the name  ```unleash-feature-management```
+On the left side in the Codespace, there is a file browser (Explorer) where you can see all the files in the repository.
 
 Add an unleash token to the code
 
@@ -118,8 +101,7 @@ The token will be given in class, and should be added to this segment of templat
       Architectures:
 ````
 
-Also, in the folder hello_world, there is a file ```app.py``` - You need to change the following line to use your own
-feature toggle
+Also, in the `hello_world` folder, there is a file `app.py` - You need to change the following line to use your own feature toggle
 
 ```shell
     if client.is_enabled('glenn_toggle'):
@@ -127,10 +109,12 @@ feature toggle
 
 ## Build and run the Lambda function locally
 
-Important! Before going forward, make sure you understand the logic of the Lambda function. It uses the toggle to decide wether to 
+Important! Before going forward, make sure you understand the logic of the Lambda function. It uses the toggle to decide whether to:
 
 * Return a mock response for the sentiment analysis
 * Call the AWS comprehend service to do a proper sentiment analysis
+
+Open the terminal in your Codespace and run:
 
 ```shell
 cd unleash-feature-management/
@@ -193,9 +177,9 @@ If you have Postman installed, or another API client - the URL should be similar
 **Warning!** please note that there should be `/Prod/sentiment`, sometimes SAM outputs `/Prod/Hello`in the output
 The method is POST, and the BODY should be a RAW text
 
-You can test the API with `curl` from the Terminal window in Cloud9 
+You can test the API with `curl` from the terminal in your Codespace:
 
-```
+```bash
 URL=<url from output of SAM deploy>
 curl -X POST $URL  -H "Content-Type: application/json" -d 'Sharknado is an absolute disaster, and not in the fun, campy way you might expect. The plot is absurd, and not in a clever or entertaining way, The CGI is laughably bad, with the sharks looking more like floating clip art than any real threat.' | jq
 ```
