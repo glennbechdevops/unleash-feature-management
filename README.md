@@ -54,13 +54,13 @@ Log into Unleash with credentials given in the class. This will either be a shar
 * Click on the "Default" Project
 * Click on the "New Feature Flag" button.
 
-![Alt text](img/newtoggle.png "a title")
+<img width="1152" height="448" alt="image" src="https://github.com/user-attachments/assets/c9adaf9e-72f0-4524-856f-9daeae69aaf5" />
 
 * Enter a name for the feature toggle, including your name to avoid naming conflicts (e.g. glenn_toggle)
 * Choose the "Release" toggle type.
 * Leave the remaining values as their default.
-* Click on the "Create Feature Toggle" button.
-* On the main feature flag page, under the section "Enabled in environments", enable the flag for the "Development" environment
+* Click on the "Create Feature Flag" button.
+* On the main feature flag page, enable the flag for the "Development" environment
 
 <img width="1283" alt="image" src="https://github.com/user-attachments/assets/66d5ee6d-b8c7-4cbc-be82-16cf322f4085">
 
@@ -74,13 +74,10 @@ Log into Unleash with credentials given in the class. This will either be a shar
 * Once ready, you'll have a fully configured VS Code environment in your browser
 * Familiarize yourself with Codespaces by exploring the interface - it works just like VS Code!
 
-## Saving Files
 
-GitHub Codespaces (VS Code) supports auto-save! You can enable it by going to File > Auto Save in the menu. When enabled, your changes will be automatically saved. However, it's still good practice to manually save files with `Ctrl+S` (Windows/Linux) or `Cmd+S` (Mac) to ensure your changes are persisted.
+## Terminal 
 
-## Repository Setup
-
-Since you've already forked this repository and created a Codespace from it, the repository code is already available in your workspace! You don't need to clone anything. The terminal is available at the bottom of the screen in your Codespace (if you don't see it, go to Terminal > New Terminal from the menu).
+The terminal is available at the bottom of the screen in your Codespace (if you don't see it, go to Terminal > New Terminal from the menu).
 
 ## Add an Unleash token to your template.yml file
 
@@ -117,7 +114,6 @@ Important! Before going forward, make sure you understand the logic of the Lambd
 Open the terminal in your Codespace and run:
 
 ```shell
-cd unleash-feature-management/
 sam build --use-container
 sam local invoke -e event.json
 ```
