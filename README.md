@@ -46,9 +46,16 @@ In this lab you will
 
 Observe the effects of setting the toggle on or off by viewing the results in our browser.
 
-## Create a toggle in unleash io
+## Create a toggle in unleash.io
 
-Log into Unleash with credentials given in the class. This will either be a shared user, or your student email address depending on the lab setup. 
+The unleash instance is running at
+https://eu.app.unleash-hosted.com/eubb1043/
+
+* Log into Unleash with credentials given in the class. 
+* You might also have been given an invite code. 
+* Please remind your instructor that your user will need "Editor" or "Admin" access. He frequeltly forgets to do this!
+
+When in the Unleash UI
 
 * Click on the "Default" Project
 * Click on the "New Feature Flag" button.
@@ -66,6 +73,7 @@ Log into Unleash with credentials given in the class. This will either be a shar
 * Once forked, navigate to your forked repository
 * Click the green "Code" button and select the "Codespaces" tab
 * Click "Create codespace on main" to launch your development environment
+
 * Wait for the Codespace to initialize - this may take a minute or two
 * Once ready, you'll have a fully configured VS Code environment in your browser
 * Familiarize yourself with Codespaces by exploring the interface - it works just like VS Code!
@@ -73,7 +81,13 @@ Log into Unleash with credentials given in the class. This will either be a shar
 
 ## Terminal 
 
-The terminal is available at the bottom of the screen in your Codespace (if you don't see it, go to Terminal > New Terminal from the menu).
+* You will need to create a Terminal in your codespace, when asked, chose the "Continue working in codespaces"
+
+The terminal is available at the bottom of the screen in your Codespace (if you don't see it, go to `Terminal > New Terminal` from the menu).
+
+When you enable the terminal, GitHub Codespaces might have to do more initialization. Grab a coffee!
+
+![alt text](image.png)
 
 ## Add an Unleash token to your template.yml file
 
@@ -90,7 +104,7 @@ The token will be given in class, and should be added to this segment of templat
       Runtime: python3.9
       Environment:
         Variables:
-          UNLEASH_API_TOKEN: <insert token here>
+          UNLEASH_API_TOKEN: "TOKEN"
       Architectures:
 ````
 
@@ -114,8 +128,7 @@ sam build --use-container
 sam local invoke -e event.json
 ```
 
-The event.json file looks very comprehensive! But it's actually just how an HTTP request is passed from the API Client to the Lambda function 
-through the AWS Service called API Gateway. Find the "body" element in the file to try out different text
+The event.json file looks very comprehensive! But it's actually just how an HTTP request is passed from the API Client to the Lambda function through the AWS Service called API Gateway. Find the "body" element in the file to try out different text
 
 The response might look like something like this;
 ```text
@@ -124,10 +137,17 @@ REPORT RequestId: 5e84abaf-fc32-4d50-86f8-4219764c8d5e  Init Duration: 0.14 ms  
 {"statusCode": 200, "headers": {"Content-Type": "application/json"}, "body": "{\"sentiment\": \"positive\", \"confidence\": 0.9991305470466614}"}
 ```
 
+*What exactly am I looking at?* The JSON you see here is a result of the AWS Comprehend service's sentiment analysis on the text given in the HTTP request body. Is it positive? Is it negative, or neutral? 
+
+Play around with it, change the body. How Positive can you get? Puppies and cake?
+
 Try to toggle your feature on and off,  When the toggle is off, the lambda should return positive sentiment, but with no confidence
 When enabled, it should return 200 ok
 
-## Deploy the lambda to AWS
+
+Depending on what you want to focus on - AWS deployment of your function, feature toggles and so on, please feel free to pick any of the bonus challenges. 
+
+## Bonus: Deploy the lambda to AWS
 
 ```shell
 sam deploy --guided
@@ -166,7 +186,7 @@ The lambda function is deployed with the domain name / URL given by *value* in y
 
 If you have Postman installed, or another API client - the URL should be similar to this `https://26gfk7hsl6.execute-api.eu-west-1.amazonaws.com/Prod/sentiment` 
 
-**Warning!** please note that there should be `/Prod/sentiment`, sometimes SAM outputs `/Prod/Hello`in the output
+**Warning!** please note that there should be `/Prod/sentiment` in the URL, sometimes SAM outputs `/Prod/Hello`in the output
 The method is POST, and the BODY should be a RAW text
 
 You can test the API with `curl` from the terminal in your Codespace:
@@ -176,7 +196,7 @@ URL=<url from output of SAM deploy>
 curl -X POST $URL  -H "Content-Type: application/json" -d 'Sharknado is an absolute disaster, and not in the fun, campy way you might expect. The plot is absurd, and not in a clever or entertaining way, The CGI is laughably bad, with the sharks looking more like floating clip art than any real threat.' | jq
 ```
 
-## Set a Randomized 50% rollout strategy for the toggle 
+## Bonus: Set a Randomized 50% rollout strategy for the toggle 
 
 * Go to the Unleash UI and find your toggle.
 * Find the development environment and click the "strategy" button
@@ -186,11 +206,10 @@ curl -X POST $URL  -H "Content-Type: application/json" -d 'Sharknado is an absol
 <img width="790" alt="image" src="https://github.com/user-attachments/assets/f1c02b2d-1664-4091-bde3-715afb565bf9">
 
 
-
-# Bonus challenge;
+# More bonus challenges:
 
 * Try different settings for the toggle (percentage, sticky randomness etc) 
 * Look at the documentation for the comprehend client and https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/comprehend.html
-* Can you add more functionality, How about detect_dominant_language? Keyword extraction or entity detection.  
+* Can you add more functionality, How about detect_dominant_language? Keyword extraction, Toxic language- or entity detection.  
 * Explore the Unleash IO and see if you can create a gradual roll-out strategy for your toggle!
 * Explore the Python SDK for unleash https://docs.getunleash.io/reference/sdks/python

@@ -20,7 +20,8 @@ Resources:
       Runtime: python3.9
       Environment:
         Variables:
-          UNLEASH_API_TOKEN: <insert token here>
+          UNLEASH_API_TOKEN: "TOKEN_HERE"
+
       Architectures:
         - x86_64
       Events:
