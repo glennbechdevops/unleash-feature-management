@@ -40,7 +40,6 @@ In this lab you will
 * Use the Unleash UI to create a feature toggle
 * Utilize GitHub Codespaces, a cloud-based development environment, to build and run an AWS Lambda function
 * Observe how we can switch the toggle on or off and observe the resulting responses
-* We will test an gradual rollout strategy and observe that the toggle state is randomized with a percentage of a probability of being on/off
 * If the feature toggle is enabled, it will pass the request body to AWS Comprehend
 * If the feature toggle is disabled, it will return a mock result of positive, with no confidence score
 * We will deploy the Lambda function and test the API endpoint
@@ -53,9 +52,6 @@ Log into Unleash with credentials given in the class. This will either be a shar
 
 * Click on the "Default" Project
 * Click on the "New Feature Flag" button.
-
-<img width="1152" height="448" alt="image" src="https://github.com/user-attachments/assets/c9adaf9e-72f0-4524-856f-9daeae69aaf5" />
-
 * Enter a name for the feature toggle, including your name to avoid naming conflicts (e.g. glenn_toggle)
 * Choose the "Release" toggle type.
 * Leave the remaining values as their default.
