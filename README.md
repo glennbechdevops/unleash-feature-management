@@ -40,6 +40,7 @@ In this lab you will
 * Use the Unleash UI to create a feature toggle
 * Utilize GitHub Codespaces, a cloud-based development environment, to build and run an AWS Lambda function
 * Observe how we can switch the toggle on or off and observe the resulting responses
+* We will test a gradual rollout strategy and observe that the toggle state is randomized with a percentage of a probability of being on/off
 * If the feature toggle is enabled, it will pass the request body to AWS Comprehend
 * If the feature toggle is disabled, it will return a mock result of positive, with no confidence score
 * We will deploy the Lambda function and test the API endpoint
@@ -170,8 +171,8 @@ REPORT RequestId: 5e84abaf-fc32-4d50-86f8-4219764c8d5e  Init Duration: 0.14 ms  
 
 Play around with it, change the body. How Positive can you get? Puppies and cake?
 
-Try to toggle your feature on and off,  When the toggle is off, the lambda should return positive sentiment, but with no confidence
-When enabled, it should return 200 ok
+Try to toggle your feature on and off. When the toggle is off, the lambda should return positive sentiment, but with no confidence.
+When enabled, it should return 200 ok.
 
 
 Depending on what you want to focus on - AWS deployment of your function, feature toggles and so on, please feel free to pick any of the bonus challenges. 
@@ -215,7 +216,7 @@ The lambda function is deployed with the domain name / URL given by *value* in y
 
 If you have Postman installed, or another API client - the URL should be similar to this `https://26gfk7hsl6.execute-api.eu-west-1.amazonaws.com/Prod/sentiment` 
 
-**Warning!** please note that there should be `/Prod/sentiment` in the URL, sometimes SAM outputs `/Prod/Hello`in the output
+**Warning!** Please note that there should be `/Prod/sentiment` in the URL, sometimes SAM outputs `/Prod/Hello` in the output
 The method is POST, and the BODY should be a RAW text
 
 You can test the API with `curl` from the terminal in your Codespace:
@@ -229,8 +230,8 @@ curl -X POST $URL  -H "Content-Type: application/json" -d 'Sharknado is an absol
 
 * Go to the Unleash UI and find your toggle.
 * Find the development environment and click the "strategy" button
-* Change to Randomized stickyness - and 50% 
-* Observe that the toggle will evaluate to true- in about 50% of the lambda invocations
+* Change to Randomized stickiness - and 50% 
+* Observe that the toggle will evaluate to true in about 50% of the lambda invocations
   
 <img width="790" alt="image" src="https://github.com/user-attachments/assets/f1c02b2d-1664-4091-bde3-715afb565bf9">
 
@@ -239,6 +240,6 @@ curl -X POST $URL  -H "Content-Type: application/json" -d 'Sharknado is an absol
 
 * Try different settings for the toggle (percentage, sticky randomness etc) 
 * Look at the documentation for the comprehend client and https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/comprehend.html
-* Can you add more functionality, How about detect_dominant_language? Keyword extraction, Toxic language- or entity detection.  
+* Can you add more functionality? How about detect_dominant_language? Keyword extraction, Toxic language- or entity detection.  
 * Explore the Unleash IO and see if you can create a gradual roll-out strategy for your toggle!
 * Explore the Python SDK for unleash https://docs.getunleash.io/reference/sdks/python
