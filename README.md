@@ -114,6 +114,35 @@ Also, in the `hello_world` folder, there is a file `app.py` - You need to change
     if client.is_enabled('glenn_toggle'):
 ```
 
+## Configure AWS Credentials
+
+Before you can build and run the Lambda function, you need to configure your AWS credentials. These will be provided to you in the classroom.
+
+Open the terminal in your Codespace and run:
+
+```shell
+aws configure
+```
+
+You will be prompted to enter the following information:
+
+```
+AWS Access Key ID [None]: <enter the access key provided in class>
+AWS Secret Access Key [None]: <enter the secret key provided in class>
+Default region name [None]: eu-west-1
+Default output format [None]: json
+```
+
+This configuration is necessary for:
+* Running the Lambda function locally with AWS Comprehend
+* Deploying the Lambda function to AWS
+
+You can verify your configuration by running:
+
+```shell
+aws sts get-caller-identity
+```
+
 ## Build and run the Lambda function locally
 
 Important! Before going forward, make sure you understand the logic of the Lambda function. It uses the toggle to decide whether to:
