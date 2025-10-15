@@ -104,7 +104,7 @@ The token will be given in class, and should be added to this segment of templat
       Runtime: python3.9
       Environment:
         Variables:
-          UNLEASH_API_TOKEN: *:*.569e7b3d2b8056fe45ba09a8259885fa7f1c9efb0bc9b0e318b560fd 
+          UNLEASH_API_TOKEN: "TOKEN"
       Architectures:
 ````
 
