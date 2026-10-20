@@ -145,8 +145,8 @@ aws sts get-caller-identity
 
 Important! Before going forward, make sure you understand the logic of the Lambda function. It uses the toggle to decide whether to:
 
-* Return a mock response for the sentiment analysis
-* Call the AWS Comprehend service to do a proper sentiment analysis
+* Call AWS Comprehend when the toggle is **off**
+* Call Amazon Bedrock when the toggle is **on** (adds a `reasoning` field)
 
 Open the terminal in your Codespace and run:
 
@@ -154,6 +154,8 @@ Open the terminal in your Codespace and run:
 sam build --use-container
 sam local invoke -e event.json
 ```
+
+> **Heads up:** the first `sam build --use-container` has to pull the Lambda build container image, and the first `sam local invoke` has to pull the Lambda runtime image and cold-start the function. Expect each to take a few minutes the first time. Subsequent runs are much faster because the images are cached locally.
 
 The event.json file looks very comprehensive! But it's actually just how an HTTP request is passed from the API client to the Lambda function through the AWS service called API Gateway. Find the "body" element in the file to try out different text inputs.
 
