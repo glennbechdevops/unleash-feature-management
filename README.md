@@ -4,7 +4,17 @@ Welcome to this lab exercise where we will explore feature management using Unle
 
 ## Overview
 
-In this lab you will use a feature toggle to switch a Lambda between two sentiment-analysis backends: AWS Comprehend and Amazon Bedrock. Skim the service descriptions below before starting.
+Imagine you are part of a development team that currently uses Amazon Comprehend for sentiment analysis. While Comprehend is fast, inexpensive, and cost-effective, it has certain limitations. For example, it may struggle to recognize subtle nuances in language, such as irony and sarcasm.
+
+Your team now wants to introduce an experimental sentiment analysis solution powered by a Large Language Model (LLM) through Amazon Bedrock.
+
+Rather than replacing the existing solution outright, you can use feature toggles to introduce the new implementation gradually and safely.
+
+Feature toggles allow you to control which backend is used without modifying or redeploying your application. This enables your team to gradually roll out the LLM-based solution to users while monitoring response times, comparing sentiment analysis results, and evaluating its overall performance.
+
+If the new solution proves unreliable, too expensive, or fails to meet expectations, the feature toggle provides a simple way to roll back to the existing Comprehend implementation.
+
+This approach demonstrates how feature toggles support controlled experimentation, reduce deployment risk, and enable safer releases in modern cloud applications.
 
 ### AWS Comprehend
 
