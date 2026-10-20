@@ -8,23 +8,27 @@ In this lab you will use a feature toggle to switch a Lambda between two sentime
 
 ### AWS Comprehend
 
-A managed NLP service. Given a piece of text, it returns a sentiment label (positive, negative, neutral, mixed) along with confidence scores. No model picking, no prompts — just an API call.
+Amazon Comprehend is a managed natural language processing (NLP) service. It exposes task-specific APIs for things like sentiment analysis, entity recognition, key-phrase extraction, and language detection.
+
+Its sentiment analysis endpoint takes a piece of text and returns one of four labels — `POSITIVE`, `NEGATIVE`, `NEUTRAL`, or `MIXED` — along with a confidence score for each label. The model is fixed; there is no prompt and no choice of underlying model.
 
 ### Amazon Bedrock
 
-A managed service for calling large language models (Anthropic Claude, Meta Llama, Amazon Nova, and others) through a single API. You send a prompt and get back a generated response. In this lab we ask Claude to classify sentiment and to justify its answer in a `reasoning` field — something Comprehend can't do.
+Amazon Bedrock is a managed service for calling large language models (LLMs) through a single API. It gives access to models from several providers — including Anthropic Claude, Meta Llama, Mistral, and Amazon Nova — without having to host them yourself.
+
+Unlike Comprehend, Bedrock does not expose task-specific endpoints. You send a prompt describing what you want and the model generates a free-form response. In this lab we ask Claude to classify sentiment and to include a short `reasoning` field explaining why — the kind of open-ended output a general-purpose LLM makes easy and that a fixed-task API like Comprehend cannot produce.
 
 ### AWS Lambda
 
-Runs your code on demand without you managing servers. You're billed only for the time it executes. Here it's triggered by an HTTP POST through API Gateway.
+AWS Lambda runs your code in response to events (HTTP requests, queue messages, scheduled triggers, etc.) without you provisioning or managing servers. The runtime scales up and down automatically and you are billed only for the compute time your code actually uses. In this lab the function is invoked through API Gateway when a client makes a POST request.
 
 ### AWS SAM
 
-A thin layer on top of CloudFormation for defining serverless apps (Lambda, API Gateway, etc.) in YAML. The SAM CLI also builds and invokes functions locally in a container that matches the Lambda runtime.
+The AWS Serverless Application Model is an extension of CloudFormation with a shorter syntax for defining serverless resources such as Lambda functions and API Gateway endpoints. It ships with a CLI that can build the deployment package, invoke the function locally in a container that matches the real Lambda runtime, and deploy to AWS.
 
 ### Unleash.io
 
-An open-source feature-flag platform. You flip flags in the Unleash UI and your running code picks up the change — no redeploy. Supports gradual rollouts, per-user targeting, and A/B strategies.
+Unleash is an open-source feature-flag platform. Flags are defined in the Unleash UI and evaluated by an SDK inside the running application, so flipping a flag changes behaviour without a redeploy. Unleash supports several strategies, including environment-based toggles, user-targeted rollouts, and gradual (percentage) rollouts, which makes it useful for continuous delivery and A/B testing.
 
 ## Lab intro
 
