@@ -4,34 +4,27 @@ Welcome to this lab exercise where we will explore feature management using Unle
 
 ## Overview
 
-In this lab, we will experiment with AWS Comprehend and feature toggles. Please spend some time reading about the different
-services and tools used in this lab.
+In this lab you will use a feature toggle to switch a Lambda between two sentiment-analysis backends: AWS Comprehend and Amazon Bedrock. Skim the service descriptions below before starting.
 
 ### AWS Comprehend
 
-Amazon Comprehend is an AWS service that offers powerful natural language processing (NLP) capabilities. It enables
-businesses to analyze and extract valuable insights from unstructured text data, such as customer reviews, social media
-content, and documents. With features like sentiment analysis, named entity recognition, and language detection, AWS
-Comprehend helps businesses understand and harness the information contained within textual content.
+A managed NLP service. Given a piece of text, it returns a sentiment label (positive, negative, neutral, mixed) along with confidence scores. No model picking, no prompts — just an API call.
 
-Sentiment analysis, a key feature of AWS Comprehend, allows businesses to automatically determine the emotional tone and
-polarity of text, classifying it as positive, negative, neutral, or mixed. By gauging the sentiment expressed in
-customer feedback, reviews, or social media posts, organizations can swiftly grasp public sentiment about their products
-or services, facilitating data-driven decision-making and proactive engagement with their audience. This feature is a
-valuable tool for monitoring and understanding customer opinions, improving brand reputation, and enhancing user
-experiences.
+### Amazon Bedrock
+
+A managed service for calling large language models (Anthropic Claude, Meta Llama, Amazon Nova, and others) through a single API. You send a prompt and get back a generated response. In this lab we ask Claude to classify sentiment and to justify its answer in a `reasoning` field — something Comprehend can't do.
 
 ### AWS Lambda
 
-AWS Lambda is a serverless computing service that allows developers to run code without provisioning or managing servers. It automatically scales applications by running code in response to triggers such as changes in data, HTTP requests, or even specific system events. Lambda functions are event-driven and can be written in various programming languages, including Python, Node.js, Java, and more. With AWS Lambda, users are only charged for the compute time they consume, making it a cost-effective option for executing small, on-demand functions without maintaining dedicated server infrastructure. It's commonly used for microservices architectures, data processing, and automating cloud operations.
+Runs your code on demand without you managing servers. You're billed only for the time it executes. Here it's triggered by an HTTP POST through API Gateway.
 
 ### AWS SAM
 
-AWS Serverless Application Model (AWS SAM) is an open-source framework designed to simplify the development, deployment, and management of serverless applications on AWS. It extends AWS CloudFormation to provide a simplified syntax for defining serverless resources, such as AWS Lambda functions, API Gateway endpoints, DynamoDB tables, and more. With SAM, developers can easily define and deploy complex serverless applications in a declarative template, manage configurations, and package their code for deployment. SAM also includes the AWS SAM CLI, which allows for local testing and debugging of serverless applications, making it a powerful tool for both development and operational efficiency. By streamlining the creation of serverless resources, AWS SAM enables rapid iteration and seamless integration with other AWS services.
+A thin layer on top of CloudFormation for defining serverless apps (Lambda, API Gateway, etc.) in YAML. The SAM CLI also builds and invokes functions locally in a container that matches the Lambda runtime.
 
 ### Unleash.io
 
-Unleash is an open-source feature management platform that enables developers to control the release of features in their applications using feature toggles. It allows for the gradual rollout of new features, enabling teams to enable or disable them without deploying new code. This helps reduce risks during deployment, improve testing, and provide a more flexible development process. Unleash supports various toggle strategies, such as user-specific, gradual rollouts, or environment-based toggles, allowing for fine-grained control over which users or environments see new features. This makes it ideal for continuous delivery and A/B testing scenarios.
+An open-source feature-flag platform. You flip flags in the Unleash UI and your running code picks up the change — no redeploy. Supports gradual rollouts, per-user targeting, and A/B strategies.
 
 ## Lab intro
 
