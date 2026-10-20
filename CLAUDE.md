@@ -4,8 +4,10 @@ Lab exercise for PGR301 that demonstrates feature management with [Unleash](http
 
 ## Repository layout
 
-- `hello_world/app.py` — Lambda handler. Reads `UNLEASH_API_TOKEN` from env, checks a feature flag, and either returns a mocked positive sentiment or calls `comprehend.detect_sentiment` on the request body.
-- `hello_world/requirements.txt` — Python dependencies for the function.
+- `sentiment_demo/app.py` — Lambda handler. Reads `UNLEASH_API_TOKEN` from env, checks a feature flag, and routes the request body to either AWS Comprehend (toggle off) or Amazon Bedrock (toggle on).
+- `sentiment_demo/comprehend_sentiment.py` — `analyze(text)` → `{sentiment, confidence}` via AWS Comprehend.
+- `sentiment_demo/bedrock_sentiment.py` — `analyze(text)` → `{sentiment, confidence, reasoning}` via Bedrock (default model: `anthropic.claude-3-haiku-20240307-v1:0`, overridable via `BEDROCK_MODEL_ID`).
+- `sentiment_demo/requirements.txt` — Python dependencies for the function.
 - `template.yaml` — SAM template. Defines the `HelloWorldFunction` (python3.9, x86_64), the `POST /sentiment` API event, and the `ComprehendFullAccess` policy. The Unleash token is injected via the `UNLEASH_API_TOKEN` env var.
 - `event.json` — API Gateway proxy event used by `sam local invoke`. The text to analyze lives in the `body` field.
 - `events/` — Additional sample events.
@@ -31,14 +33,15 @@ Subsequent deploys: `sam deploy`.
 ## Configuration knobs students must set
 
 - `template.yaml`: replace the `UNLEASH_API_TOKEN` placeholder value with the token handed out in class.
-- `hello_world/app.py`: change the toggle name in `client.is_enabled('...')` to the flag the student created in Unleash (names are globally shared, so each student uses a personal suffix like `glenn_toggle`).
+- `sentiment_demo/app.py`: change the toggle name in `client.is_enabled('...')` to the flag the student created in Unleash (names are globally shared, so each student uses a personal suffix like `glenn_toggle`).
+- `template.yaml`: optionally override `BEDROCK_MODEL_ID` if a different Bedrock model is preferred/available in the deployment region.
 
 ## Behavior
 
-- Toggle **off** → handler short-circuits and returns `{"sentiment": "positive"}` (no confidence score).
-- Toggle **on** → handler calls AWS Comprehend's `detect_sentiment` on `event["body"]` and returns the mapped label plus the confidence score.
+- Toggle **off** → handler calls AWS Comprehend and returns `{sentiment, confidence}`.
+- Toggle **on** → handler calls Amazon Bedrock and returns `{sentiment, confidence, reasoning}`.
 
-Running against AWS Comprehend requires valid AWS credentials (`aws configure`, region `eu-west-1`).
+Both backends require valid AWS credentials (`aws configure`, region `eu-west-1`).
 
 ## Unleash instance
 

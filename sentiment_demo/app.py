@@ -3,7 +3,8 @@ import os
 
 from UnleashClient import UnleashClient
 
-from hello_world import bedrock_sentiment, comprehend_sentiment
+import bedrock_sentiment
+import comprehend_sentiment
 
 
 def lambda_handler(event, context):
@@ -23,6 +24,7 @@ def lambda_handler(event, context):
         result = bedrock_sentiment.analyze(event["body"])
     else:
         result = comprehend_sentiment.analyze(event["body"])
+
 
     return {
         "statusCode": 200,

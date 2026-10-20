@@ -100,7 +100,7 @@ The token will be given in class, and should be added to this segment of the tem
 
 ````text
     Properties:
-      CodeUri: hello_world/
+      CodeUri: sentiment_demo/
       Handler: app.lambda_handler
       Runtime: python3.9
       Environment:
@@ -109,7 +109,7 @@ The token will be given in class, and should be added to this segment of the tem
       Architectures:
 ````
 
-Also, in the `hello_world` folder, there is a file `app.py`. You need to change the following line to use your own feature toggle:
+Also, in the `sentiment_demo` folder, there is a file `app.py`. You need to change the following line to use your own feature toggle:
 
 ```shell
     if client.is_enabled('glenn_toggle'):
