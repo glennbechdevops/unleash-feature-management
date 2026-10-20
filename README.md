@@ -99,7 +99,7 @@ The token will be given in class, and should be added to this segment of the tem
     Properties:
       CodeUri: sentiment_demo/
       Handler: app.lambda_handler
-      Runtime: python3.9
+      Runtime: python3.12
       Environment:
         Variables:
           UNLEASH_API_TOKEN: "TOKEN"

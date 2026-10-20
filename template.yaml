@@ -17,7 +17,7 @@ Resources:
     Properties:
       CodeUri: sentiment_demo/
       Handler: app.lambda_handler
-      Runtime: python3.9
+      Runtime: python3.12
       Environment:
         Variables:
           UNLEASH_API_TOKEN: "TOKEN_HERE"
