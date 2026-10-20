@@ -157,7 +157,7 @@ sam local invoke -e event.json
 
 > **Heads up:** the first `sam build --use-container` has to pull the Lambda build container image, and the first `sam local invoke` has to pull the Lambda runtime image and cold-start the function. Expect each to take a few minutes the first time. Subsequent runs are much faster because the images are cached locally.
 
-The event.json file looks very comprehensive! But it's actually just how an HTTP request is passed from the API client to the Lambda function through the AWS service called API Gateway. Find the "body" element in the file to try out different text inputs.
+`event.json` is the payload API Gateway would normally pass to the Lambda — a real event has lots of fields, but this one is stripped down to the only field the handler actually reads: `body`. Edit that string to try different text inputs.
 
 The response might look something like this:
 ```text
