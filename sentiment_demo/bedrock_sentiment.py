@@ -1,5 +1,6 @@
 import json
 import os
+import re
 
 import boto3
 
@@ -7,9 +8,11 @@ import boto3
 def analyze(text):
     """Classify sentiment with Bedrock and return label, confidence, and reasoning."""
     client = boto3.client('bedrock-runtime')
+    # Current Claude models on Bedrock require a regional inference profile,
+    # not a raw foundation-model ID.
     model_id = os.environ.get(
         'BEDROCK_MODEL_ID',
-        'anthropic.claude-3-haiku-20240307-v1:0'
+        'eu.anthropic.claude-haiku-4-5-20251001-v1:0'
     )
 
     prompt = (
@@ -31,7 +34,10 @@ def analyze(text):
     response = client.invoke_model(modelId=model_id, body=body)
     payload = json.loads(response['body'].read())
     reply = payload['content'][0]['text'].strip()
-    parsed = json.loads(reply)
+
+    # Claude often wraps JSON in ```json fences even when told not to.
+    match = re.search(r'\{.*\}', reply, re.DOTALL)
+    parsed = json.loads(match.group(0) if match else reply)
 
     return {
         "sentiment": parsed['sentiment'],
