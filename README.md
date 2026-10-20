@@ -89,17 +89,6 @@ When in the Unleash UI:
 * Once ready, you'll have a fully configured VS Code environment in your browser
 * Familiarize yourself with Codespaces by exploring the interface - it works just like VS Code!
 
-
-## Terminal
-
-* You will need to create a terminal in your Codespace. When asked, choose "Continue working in Codespaces".
-
-The terminal is available at the bottom of the screen in your Codespace (if you don't see it, go to `Terminal > New Terminal` from the menu).
-
-When you enable the terminal, GitHub Codespaces might have to do more initialization. Grab a coffee!
-
-![alt text](image.png)
-
 ## Add an Unleash token to your template.yaml file
 
 On the left side in the Codespace, there is a file browser (Explorer) where you can see all the files in the repository.
