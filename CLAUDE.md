@@ -6,7 +6,7 @@ Lab exercise for PGR301 that demonstrates feature management with [Unleash](http
 
 - `sentiment_demo/app.py` — Lambda handler. Reads `UNLEASH_API_TOKEN` from env, checks a feature flag, and routes the request body to either AWS Comprehend (toggle off) or Amazon Bedrock (toggle on).
 - `sentiment_demo/comprehend_sentiment.py` — `analyze(text)` → `{sentiment, confidence}` via AWS Comprehend.
-- `sentiment_demo/bedrock_sentiment.py` — `analyze(text)` → `{sentiment, confidence, reasoning}` via Bedrock (default model: `anthropic.claude-3-haiku-20240307-v1:0`, overridable via `BEDROCK_MODEL_ID`).
+- `sentiment_demo/bedrock_sentiment.py` — `analyze(text)` → `{sentiment, confidence, reasoning}` via Bedrock (default model: `eu.anthropic.claude-haiku-4-5-20251001-v1:0` — an EU regional inference profile, required for current Claude models; overridable via `BEDROCK_MODEL_ID`).
 - `sentiment_demo/requirements.txt` — Python dependencies for the function.
 - `template.yaml` — SAM template. Defines the `HelloWorldFunction` (python3.12, x86_64), the `POST /sentiment` API event, and the IAM policies for Comprehend and Bedrock. The Unleash token is injected via the `UNLEASH_API_TOKEN` env var.
 - `event.json` — API Gateway proxy event used by `sam local invoke`. The text to analyze lives in the `body` field.
