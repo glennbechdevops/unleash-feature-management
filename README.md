@@ -71,9 +71,12 @@ When in the Unleash UI:
 * Choose the "Release" toggle type.
 * Leave the remaining values as their defaults.
 * Click on the "Create Feature Flag" button.
+
+<img width="1011" height="524" alt="image" src="https://github.com/user-attachments/assets/dfea08df-6f25-4082-ae38-9ca65583d5a6" />
+
 * On the main feature flag page, enable the flag for the "Development" environment.
 
-<img width="1283" alt="image" src="https://github.com/user-attachments/assets/66d5ee6d-b8c7-4cbc-be82-16cf322f4085">
+<img width="1156" height="111" alt="image" src="https://github.com/user-attachments/assets/1338a627-9850-436b-a734-eb62ada77532" />
 
 ## Set up your GitHub Codespace
 
