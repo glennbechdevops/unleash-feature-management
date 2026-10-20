@@ -21,6 +21,7 @@ Resources:
       Environment:
         Variables:
           UNLEASH_API_TOKEN: "TOKEN_HERE"
+          BEDROCK_MODEL_ID: "anthropic.claude-3-haiku-20240307-v1:0"
 
       Architectures:
         - x86_64
@@ -32,6 +33,10 @@ Resources:
             Method: post
       Policies:
           - arn:aws:iam::aws:policy/ComprehendFullAccess
+          - Statement:
+              - Effect: Allow
+                Action: bedrock:InvokeModel
+                Resource: "*"
 
 Outputs:
   # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
